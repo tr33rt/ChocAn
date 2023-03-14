@@ -4,7 +4,7 @@
 # This file contains the member, member service, provider, and provider service
 # classes used.
 
-#Used for members
+# Used for member
 class service:
     def __init__(self, date, provider, service):
         self.date = date
@@ -13,7 +13,7 @@ class service:
     def display(self):
         print("Date: ", self.date, "\n", "Provider: ", self.provider, "\n", "Service: ", self.service, "\n\n\n", sep="")
 
-#Used for providers        
+# Used for provider        
 class provider_service:
         def __init__(self, service_date, date_time, member_name, member_id, service_code, fee):
             self.service_date = service_date
