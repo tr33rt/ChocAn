@@ -9,6 +9,7 @@
   #Update user file upon editing
 
 import datamanagerhold
+import class_objects
 from datetime import datetime
 
 #Holds one instance of a user account
@@ -49,7 +50,7 @@ class controller:
       name, username, password, access_level = [i.strip() for i in row]
       account_info = account(name, username, password, access_level)
       self.logins.append(account_info)
-      ++x
+      x+=1
   def startup(self):
     self.import_accounts()    
     self.data_manager.import_members()
@@ -341,7 +342,7 @@ class controller:
       Service_ID = input("Service ID: ")
       Provider_ID = input("Provider ID: ")
       #search service directory
-      holdlist = [classobjects.service for classobjects.service in self.data_manager.service_directory if service.code == Service_ID]
+      holdlist = [class_objects.service for class_objects.service in self.data_manager.service_directory if service.code == Service_ID]
       if(holdlist == None):
         print("Incorrect Service ID, restarting form.")
         self.member_verification()
