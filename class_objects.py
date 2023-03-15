@@ -3,6 +3,7 @@
 # ChocAn Project
 # This file contains the member, member service, provider, and provider service
 # classes used.
+# Also contains the service description and provider directory classes
 
 # Used to store a service code and it's corresponding description
 class service_desc:
