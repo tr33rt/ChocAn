@@ -128,4 +128,3 @@ new = service("05/07/2023", "Ashley K", "Physical Appointment")
 temp.add_service(new)
 temp.display_services()
 '''
-codes = provider_directory
