@@ -49,6 +49,8 @@ class member:
         self.state = state
         self.zip = zip
         self.services = []
+    def get_id(self):
+        return self.id
     def change_name(self, name):
         self.name = name
     def change_id(self, id):
@@ -81,6 +83,8 @@ class provider(member):
         self.services = []
         self.num_consultations = 0
         self.week_fee = 0
+    def get_id(self):
+        return self.id
     def change_name(self, name):
         self.name = name
     def change_id(self, id):
