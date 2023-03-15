@@ -12,9 +12,18 @@ class service_desc:
 
 # A list of all service codes and their descriptions
 class provider_directory:
-    list = [service_desc(100, "A 30 minute consultation with a Registered Dietitian." ), 
-            service_desc(101, "A medical appointment with an Internal Medicine Physician"),
-            service_desc(102, "A 30 minute exercise appointment with a ChocAn exercise specialist")]
+    list = [service_desc(100, "A 30 minute consultation with a Registered Dietitian.\n" ), 
+            service_desc(101, "A medical appointment with an Internal Medicine Physician\n"),
+            service_desc(102, "A 30 minute exercise appointment with a ChocAn exercise specialist\n")]
+    
+    #Displays a matching service code's description. Displays error if no match is found
+    def display_match(self, code):
+        for i in list:
+            if(code == list[i].code):
+                print(list[i.desc])
+                return
+        print("Error: Service Code not found.\n")
+        
 # Used for member
 class service:
     def __init__(self, date, provider, service):
@@ -118,3 +127,4 @@ new = service("05/07/2023", "Ashley K", "Physical Appointment")
 temp.add_service(new)
 temp.display_services()
 '''
+codes = provider_directory
