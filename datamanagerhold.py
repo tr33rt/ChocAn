@@ -48,7 +48,7 @@ class data_manager:
         count += 1
     return False
   def edit_member(self, id, name, address, city, state, zip, index):
-    index = 0
+
     for i in self.member_directory:
       if(self.member_directory.id == id):
         i.change_name(name)
