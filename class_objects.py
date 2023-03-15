@@ -13,18 +13,20 @@ class service:
     def display(self):
         print("Date: ", self.date, "\n", "Provider: ", self.provider, "\n", "Service: ", self.service, "\n\n\n", sep="")
 
-# Used for provider        
+# Used for providers        
 class provider_service:
-        def __init__(self, service_date, date_time, member_name, member_id, service_code, fee):
+        def __init__(self, service_date, date_time, member_name, member_id, service_code, fee, comments):
             self.service_date = service_date
             self.date_time = date_time
             self.member_name = member_name
             self.member_id = member_id
             self.service_code = service_code
             self.fee = fee
+            self.comments = comments
         def display(self):
             print("Service Date: ", self.service_date, "\n", "Date/Time: ", self.date_time, "\n"
-                  "Member name: ", self.member_name, "\n", "Service code: ", self.service_code, "\n", "Fee: ", self.fee, "\n\n\n")
+                  "Member name: ", self.member_name, "\n", "Service code: ", self.service_code, "\n", "Fee: ", self.fee, "\n",
+                  "Comments: ", self.comments, "\n\n\n", sep="")
 
 
 class member:
