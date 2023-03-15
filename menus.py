@@ -8,7 +8,6 @@
   #Create return oppurtunities from sub to main menu
   #Update user file upon editing
 
-import classobjects
 import datamanagerhold
 from datetime import datetime
 
