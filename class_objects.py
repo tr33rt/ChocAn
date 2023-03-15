@@ -4,6 +4,17 @@
 # This file contains the member, member service, provider, and provider service
 # classes used.
 
+# Used to store a service code and it's corresponding description
+class service_desc:
+    def __init__(self, code, desc):
+        self.code = code
+        self.desc = desc
+
+# A list of all service codes and their descriptions
+class provider_directory:
+    list = [service_desc(100, "A 30 minute consultation with a Registered Dietitian." ), 
+            service_desc(101, "A medical appointment with an Internal Medicine Physician"),
+            service_desc(102, "A 30 minute exercise appointment with a ChocAn exercise specialist")]
 # Used for member
 class service:
     def __init__(self, date, provider, service):
