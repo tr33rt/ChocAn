@@ -103,7 +103,9 @@ class controller:
         case "2":
           self.member_billing()
         case "3":
-          self.provider_submenu()
+          pd = class_objects.provider_directory.list
+          for i in pd:
+            print(str(i.code) + " : " + i.desc)
         case "4":
           input("Input Provider ID: ")
           self.data_manager.services_provided(provider_id)
@@ -189,13 +191,13 @@ class controller:
     menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
     match menuval:
       case "1":
-        return self.data_manager.print_provider()
+        self.data_manager.print_provider()
       case "2":
-        return self.add_provider()
+        self.add_provider()
       case "3":
-        return self.remove_provider()
+        self.remove_provider()
       case "4":
-        return self.edit_provider()
+        self.edit_provider()
   def user_submenu(self):
     print("[1] Print user directory")
     print("[2] Add user")
@@ -390,7 +392,7 @@ class controller:
           return
   def remove_member(self):
     id = input("ID of member to remove: ")
-    if(self.data_manager.member_check(id) == True):
+    if(self.data_manager.member_check(id) == False):
       self.data_manager.remove_member(id)
     else:
       hold = input("This member ID does not exist. Would you like to try again with a different number? \n [1] Yes \n [2] No")
@@ -414,7 +416,7 @@ class controller:
 
   def add_provider(self):
     id = input("ID of new provider: ")
-    if(self.data_manager.member_check(id) == True):
+    if(self.data_manager.member_check(id) == False):
       name = input("Provider name: ")
       address = input("Provider Address: ")
       city = input("Provider city: ")
@@ -430,7 +432,7 @@ class controller:
           return
   def remove_provider(self):
     id = input("ID of provider to remove: ")
-    if(self.data_manager.provider_check(id) == True):
+    if(self.data_manager.provider_check(id) == False):
       self.data_manager.remove_provider(id)
     else:
       hold = input("This provider ID does not exist. Would you like to try again with a different number? \n [1] Yes \n [2] No")
