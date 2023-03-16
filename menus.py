@@ -156,11 +156,11 @@ class controller:
           else:
             print("Member number is not valid")
         case "2":
-          return provider_submenu()
+          return self.provider_submenu()
         case "3":
-          return member_submenu()
+          return self.member_submenu()
         case "4":
-          return reports_submenu()
+          return self.reports_submenu()
         case "X":
           exit_val = "Y"
         case "x":
@@ -374,7 +374,7 @@ class controller:
               return
   def add_member(self):
     id = input("ID of new member: ")
-    if(self.data_manager.member_check(id) == True):
+    if(self.data_manager.member_check(id) == False):
       name = input("Member name: ")
       address = input("Member Address: ")
       city = input("Member city: ")
