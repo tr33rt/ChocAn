@@ -29,12 +29,10 @@ class controller:
       self.data_manager = datamanagerhold.data_manager()
   #Check if username is in the accounts list for new user creation
   def username_check(self, username): 
-    index = [account for account in self.logins if account.user == username]
-    #If list is empty there is no username that matches that will be put into the subset
-    if (index == None):
-      return -1
-    else:
-      return 1
+    for i in self.logins:
+      if(i.user == username):
+        return True
+    return False
   def account_check(self, username, password):
     hold = [account for account in self.logins if (account.user == username and account.password == password)]
     if (hold == []):
@@ -87,12 +85,11 @@ class controller:
         return 1
   #Display menus and forms for provider level access
   def provider_menu(self):
-    exit_val = "N"
-    while(exit_val == "N"): 
       print("[1] Validate member number")
       print("[2] Bill for services")
       print("[3] View provider directory")
       print("[4] Request services provided report")
+      print("[X] Exit")
       menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
       match menuval:
         case "1":
@@ -110,10 +107,9 @@ class controller:
           input("Input Provider ID: ")
           self.data_manager.services_provided(provider_id)
         case "X":
-          exit_val = "Y"
-        case "x":
-          exit_val = "Y"
-    print("Thank you for using ChocAn. Goodbye!")
+          print("Thank you for using ChocAn. Goodbye!")
+          quit()
+      self.provider_menu()
   def admin_menu(self):
     exit_val = "N"
     while(exit_val == "N"): 
@@ -121,8 +117,8 @@ class controller:
       print("[2] Access provider directory")
       print("[3] Access member directory")
       print("[4] Request reports")
-      print("[5] Access user directory")
-      menuhold = input("Please enter the number corresponding to which menu item you would like to access, or type X to exit the program: ")
+      print("[X] Exit")
+      menuhold = input("Please enter the number corresponding to which menu item you would like to access: ")
       match menuhold:
         case "1":
           if (self.member_verification() == True):
@@ -130,18 +126,17 @@ class controller:
           else:
             print("Member number is not valid")
         case "2":
-          return self.provider_submenu()
+          self.provider_submenu()
         case "3":
-          return self.member_submenu()
+          self.member_submenu()
         case "4":
-          return self.reports_submenu()
+          self.reports_submenu()
         case "5":
-          return self.user_submenu()
+          self.user_submenu()
         case "X":
-          exit_val = "Y"
-        case "x":
-          exit_val = "Y"
-    print("Thank you for using ChocAn. Goodbye!")
+          print("Thank you for using ChocAn. Goodbye!")
+          quit()
+      self.admin_menu()
   #Display menus and forms for manager level access
   def manager_menu(self):
     exit_val = "N"
@@ -150,6 +145,7 @@ class controller:
       print("[2] Access provider directory")
       print("[3] Access member directory")
       print("[4] Request reports")
+      print("[X] Exit")
       menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
       match menuval:
         case "1":
@@ -158,36 +154,40 @@ class controller:
           else:
             print("Member number is not valid")
         case "2":
-          return self.provider_submenu()
+          self.provider_submenu()
         case "3":
-          return self.member_submenu()
+          self.member_submenu()
         case "4":
-          return self.reports_submenu()
+          self.reports_submenu()
         case "X":
-          exit_val = "Y"
-        case "x":
-          exit_val = "Y"
-    print("Thank you for using ChocAn. Goodbye!")
+          print("Thank you for using ChocAn. Goodbye!")
+          quit()
+      self.manager_menu()
   def member_submenu(self):
     print("[1] Print member directory")
     print("[2] Add member")
     print("[3] Remove member")
     print("[4] Modify existing member")
+    print("[X] Exit to main menu")
     menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
     match menuval:
       case "1":
-        return self.data_manager.print_member()
+        self.data_manager.print_member()
       case "2":
-        return self.add_member()
+        self.add_member()
       case "3":
-        return self.remove_member()
+        self.remove_member()
       case "4":
-        return self.edit_member()
+        self.edit_member()
+      case "X":
+        return
+    self.member_submenu()
   def provider_submenu(self):
     print("[1] Print provider directory")
     print("[2] Add provider")
     print("[3] Remove provider")
     print("[4] Modify existing provider")
+    print("[X] Return to main menu")
     menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
     match menuval:
       case "1":
@@ -198,11 +198,15 @@ class controller:
         self.remove_provider()
       case "4":
         self.edit_provider()
+      case "X":
+        return
+    self.provider_submenu()
   def user_submenu(self):
     print("[1] Print user directory")
     print("[2] Add user")
     print("[3] Remove user")
     print("[4] Modify existing user")
+    print("[X] Return to main menu")
     menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
     match menuval:
       case "1":
@@ -213,10 +217,14 @@ class controller:
         self.remove_user_form()
       case "4":
         self.edit_user()
+      case "X":
+        return
+    self.user_submenu()
   def reports_submenu(self):
     print("[1] Print services provided report")
     print("[2] Print services recieved report")
     print("[3] Print service fees report")
+    print("[X] Exit to main menu")
     menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
     match menuval:
       case "1":
@@ -227,6 +235,9 @@ class controller:
         self.data_manager.services_recieved(member_id)
       case "3":
         self.data_manager.service_fees()
+      case "X":
+        return
+    self.reports_submenu()
   def remove_user_form(self):
     self.print_user_list()
     username = input("Enter username of user to remove: ")
