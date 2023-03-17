@@ -108,7 +108,7 @@ class controller:
           for i in pd:
             print(str(i.code) + " : " + i.desc)
         case "4":
-          provider = int(input("Input Provider ID: "))
+          provider_id = int(input("Input Provider ID: "))
           self.data_manager.services_provided(provider_id)
         case "X":
           print("Thank you for using ChocAn. Goodbye!")
