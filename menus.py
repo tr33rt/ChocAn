@@ -9,6 +9,7 @@
   #Update user file upon editing
 
 import datamanagerhold
+import class_objects
 from class_objects import *
 from datetime import datetime
 from random import randint
@@ -232,11 +233,11 @@ class controller:
     menuval = input("Please enter the number corresponding to which menu item you would like to access: ")
     match menuval:
       case "1":
-        provider_id = input("Input Provider ID: ")
+        provider_id = int(input("Input Provider ID: "))
         self.data_manager.services_provided(provider_id)
       case "2":
-        member_id = input("Input Member ID: ")
-        self.data_manager.services_recieved(member_id)
+        member_id = int(input("Input Member ID: "))
+        self.data_manager.services_received(member_id)
       case "3":
         self.data_manager.service_fees()
       case "X":
@@ -356,8 +357,8 @@ class controller:
     else:
       print("Validated")
       DOS = input("Date of service: ")
-      Service_ID = input("Service ID: ")
-      Provider_ID = input("Provider ID: ")
+      Service_ID = int(input("Service ID: "))
+      Provider_ID = int(input("Provider ID: "))
       #search service directory
       holdlist = [class_objects.service for class_objects.service in self.data_manager.service_directory if service.code == Service_ID]
       if(holdlist == None):
