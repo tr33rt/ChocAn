@@ -11,6 +11,7 @@
 import datamanagerhold
 import class_objects
 from datetime import datetime
+from random import randint
 
 #Holds one instance of a user account
 class account:
@@ -27,6 +28,8 @@ class controller:
   def __init__(self):
       self.logins = []
       self.data_manager = datamanagerhold.data_manager()
+
+  
   #Check if username is in the accounts list for new user creation
   def username_check(self, username): 
     for i in self.logins:
@@ -49,6 +52,7 @@ class controller:
       account_info = account(name, username, password, access_level)
       self.logins.append(account_info)
       x+=1
+
   def startup(self):
     self.import_accounts()    
     self.data_manager.import_members()
@@ -385,8 +389,9 @@ class controller:
               self.member_billing()
             case "2":
               return
+
   def add_member(self):
-    id = input("ID of new member: ")
+    id = randint(10 ** (8), (10 ** 9) - 1)
     if(self.data_manager.member_check(id) == False):
       name = input("Member name: ")
       address = input("Member Address: ")
@@ -402,31 +407,31 @@ class controller:
         case "2":
           return
   def remove_member(self):
-    id = input("ID of member to remove: ")
-    if(self.data_manager.member_check(id) == False):
+    id = int(input("ID of member to remove: "))
+    if(self.data_manager.member_check(id) == True):
       self.data_manager.remove_member(id)
     else:
-      hold = input("This member ID does not exist. Would you like to try again with a different number? \n [1] Yes \n [2] No")
+      hold = input("This member ID does not exist. Would you like to try again with a different number? \n [1] Yes \n [2] No \n")
       match hold:
         case "1":
           return self.remove_member()
         case "2":
           return
   def edit_member(self):
-    id = input("ID of member to edit: ")
+    id = int(input("ID of member to edit: "))
     if(self.data_manager.member_check(id) == True):
       name = input("Updated name of member: ")
       address = input("Updated address of member: ")
       city = input("Updated city of member: ")
       state = input("Updated state of member: ")
-      zip = input("Updated zip of member: ")
+      zip = int(input("Updated zip of member: "))
       self.data_manager.edit_member(id, name, address, city, state, zip)
       return 1
     else:
       return -1
 
   def add_provider(self):
-    id = input("ID of new provider: ")
+    id = id = randint(10 ** (8), (10 ** 9) - 1)
     if(self.data_manager.member_check(id) == False):
       name = input("Provider name: ")
       address = input("Provider Address: ")
@@ -442,7 +447,7 @@ class controller:
         case "2":
           return
   def remove_provider(self):
-    id = input("ID of provider to remove: ")
+    id = int(input("ID of provider to remove: "))
     if(self.data_manager.provider_check(id) == False):
       self.data_manager.remove_provider(id)
     else:
@@ -453,7 +458,7 @@ class controller:
         case "2":
           return
   def edit_provider(self):
-    id = input("ID of provider to edit: ")
+    id = int(input("ID of provider to edit: "))
     if(self.data_manager.provider_check(id) == True):
       name = input("Updated name of Provider: ")
       address = input("Updated address of Provider: ")
@@ -464,3 +469,4 @@ class controller:
       return 1
     else:
       return -1
+

@@ -6,6 +6,8 @@
 # Also contains the service description and provider directory classes
 
 # Used to store a service code and it's corresponding description
+
+
 class service_desc:
     def __init__(self, code, desc):
         self.code = code
@@ -52,8 +54,8 @@ class provider_service:
 
 class member:
     def __init__(self, name, id, address, city, state, zip):
-        self.name = name
         self.id = id
+        self.name = name
         self.address = address
         self.city = city
         self.state = state
@@ -76,7 +78,7 @@ class member:
     def add_service(self, service):
         self.services.append(service)
     def display(self):
-        print("Name: ", self.name, "\n", "Member ID: ", self.id,"\n", "Address: ", self.address, "\n", 
+        print("Name: ", self.name, "\n", "Member ID: ", self.id,"\n", "Address: ", self.address, "\n", "City:", self.city, "\n",
               "State: ", self.state, "\n", "Zip: ", self.zip, "\n\n\n", sep="")
     def display_services(self):
         for service in self.services:
@@ -84,8 +86,8 @@ class member:
         
 class provider(member):
     def __init__(self, name, id, address, city, state, zip):
-        self.name = name
         self.id = id
+        self.name = name
         self.address = address
         self.city = city
         self.state = state
@@ -93,6 +95,10 @@ class provider(member):
         self.services = []
         self.num_consultations = 0
         self.week_fee = 0
+    def random_9_digit(self):
+        range_start = 10 ** (8)
+        range_end = (10 ** 9) - 1
+        return randint(range_start, range_end)
     def get_id(self):
         return self.id
     def change_name(self, name):
