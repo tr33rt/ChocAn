@@ -90,19 +90,21 @@ class data_manager:
     file.close()
 
   def import_providers(self):
-    """
     file = open("members.txt", 'r')
-    name = file.readline()
+    name = file.readline().replace("\n", "")
+    
     while name != "":
-      id = file.readline()
-      address = file.readline()
-      city = file.readline()
-      state = file.readline()
-      zip = file.readline()
+      id = int(file.readline())
+      address = file.readline().replace("\n", "")
+      city = file.readline().replace("\n", "")
+      state = file.readline().replace("\n", "")
+      zip = int(file.readline())
       obj = member(name, id, address, city, state, zip)
-      self.member_directory.append(obj)
-      name = file.readline()
-    """
+      self.provider_directory.append(obj)
+      name = file.readline().replace("\n", "")
+
+    file.close()
+
   def print_member(self):
     for i in self.member_directory:
       i.display()
@@ -115,14 +117,27 @@ class data_manager:
     file = open("members.txt", "w")
     for i in self.member_directory:
       file.write(i.name + "\n")
-      file.write(i.id + "\n")
+      file.write(str(i.id) + "\n")
       file.write(i.address + "\n")
       file.write(i.city + "\n")
       file.write(i.state + "\n")
-      file.write(i.zip + "\n")
-      file.write(i.display_services())
+      file.write(str(i.zip) + "\n")
+      #file.write(i.display_services())
+    file.close()
+  
+  def write_file_provider(self):
+    file = open("providers.txt", "w")
+    for i in self.provider_directory:
+      file.write(i.name + "\n")
+      file.write(str(i.id) + "\n")
+      file.write(i.address + "\n")
+      file.write(i.city + "\n")
+      file.write(i.state + "\n")
+      file.write(str(i.zip) + "\n")
+      #file.write(i.display_services())
     file.close()
 
   def load_services(self):
     #Load services from external file into service directory - object lives in classobjects
+
     return True

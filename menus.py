@@ -113,6 +113,8 @@ class controller:
           self.data_manager.services_provided(provider_id)
         case "X":
           print("Thank you for using ChocAn. Goodbye!")
+          self.data_manager.write_file_member()
+          self.data_manager.write_file_provider()
           quit()
       self.provider_menu()
   def admin_menu(self):
@@ -140,6 +142,8 @@ class controller:
           self.user_submenu()
         case "X":
           print("Thank you for using ChocAn. Goodbye!")
+          self.data_manager.write_file_member()
+          self.data_manager.write_file_provider()
           quit()
       self.admin_menu()
   #Display menus and forms for manager level access
@@ -166,6 +170,8 @@ class controller:
           self.reports_submenu()
         case "X":
           print("Thank you for using ChocAn. Goodbye!")
+          self.data_manager.write_file_member()
+          self.data_manager.write_file_provider()
           quit()
       self.manager_menu()
   def member_submenu(self):
@@ -329,7 +335,7 @@ class controller:
       x += 1
     return
   def member_verification(self):
-    id = input("Input Member ID: ")
+    id = int(input("Input Member ID: "))
     if(datamanagerhold.data_manager().member_check(id) == False):
       print("Invalid member number")
       print("[1] Retry with new member ID")
@@ -449,10 +455,10 @@ class controller:
           return
   def remove_provider(self):
     id = int(input("ID of provider to remove: "))
-    if(self.data_manager.provider_check(id) == False):
+    if(self.data_manager.provider_check(id) == True):
       self.data_manager.remove_provider(id)
     else:
-      hold = input("This provider ID does not exist. Would you like to try again with a different number? \n [1] Yes \n [2] No")
+      hold = input("This provider ID does not exist. Would you like to try again with a different number? \n [1] Yes \n [2] No \n")
       match hold:
         case "1":
           return self.remove_provider()

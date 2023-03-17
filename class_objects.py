@@ -15,9 +15,9 @@ class service_desc:
 
 # A list of all service codes and their descriptions
 class provider_directory:
-    list = [service_desc(100, "A 30 minute consultation with a Registered Dietitian.\n" ), 
-            service_desc(101, "A medical appointment with an Internal Medicine Physician\n"),
-            service_desc(102, "A 30 minute exercise appointment with a ChocAn exercise specialist\n")]
+    list = [service_desc(100100, "A 30 minute consultation with a Registered Dietitian.\n" ), 
+            service_desc(100123, "A medical appointment with an Internal Medicine Physician\n"),
+            service_desc(100456, "A 30 minute exercise appointment with a ChocAn exercise specialist\n")]
     
     #Displays a matching service code's description. Displays error if no match is found
     def display_match(self, code):
