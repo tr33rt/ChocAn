@@ -9,7 +9,7 @@
   #Update user file upon editing
 
 import datamanagerhold
-import class_objects
+from class_objects import *
 from datetime import datetime
 from random import randint
 
@@ -342,7 +342,7 @@ class controller:
     else:
       return True
   def member_billing(self):
-    member_id = input("Input member ID or slide member card: ")
+    member_id = int(input("Input member ID or slide member card: "))
     if(datamanagerhold.data_manager().member_check(member_id) == False):
       print("Invalid member number")
       print("[1] Retry with new member ID")
