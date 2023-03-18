@@ -3,11 +3,6 @@
 #ChocAn Term Project
 #This file contains the account and controller classes
 
-#Need to add
-  #Checking for input data types
-  #Create return oppurtunities from sub to main menu
-  #Update user file upon editing
-
 import datamanagerhold
 import class_objects
 import time
