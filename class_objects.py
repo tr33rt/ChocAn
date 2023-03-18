@@ -9,15 +9,16 @@
 
 
 class service_desc:
-    def __init__(self, code, desc):
+    def __init__(self, code, desc, fee):
         self.code = code
         self.desc = desc
+        self.fee = fee
 
 # A list of all service codes and their descriptions
 class provider_directory:
-    list = [service_desc(100100, "A 30 minute consultation with a Registered Dietitian.\n" ), 
-            service_desc(100123, "A medical appointment with an Internal Medicine Physician\n"),
-            service_desc(100456, "A 30 minute exercise appointment with a ChocAn exercise specialist\n")]
+    list = [service_desc(100100, "A 30 minute consultation with a Registered Dietitian.\n", 400 ), 
+            service_desc(100123, "A medical appointment with an Internal Medicine Physician\n", 569),
+            service_desc(100456, "A 30 minute exercise appointment with a ChocAn exercise specialist\n", 50)]
     
     #Displays a matching service code's description. Displays error if no match is found
     def display_match(self, code):
