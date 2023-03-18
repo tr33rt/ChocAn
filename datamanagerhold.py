@@ -2,6 +2,7 @@
 #Contains holder functionality used by menus file
 
 from class_objects import *
+from datetime import datetime
 
   
 class data_manager:
@@ -52,10 +53,38 @@ class data_manager:
         i.change_zip(zip)
 
   def services_received(self, member_id):
+    for i in self.member_directory:
+      if(i.id == id):
+        filename = i.name + '.txt'
+        with open(filename, 'a',) as f:
+          f.write('Name:' + i.name)
+          f.write('Number:' + str(i.id))
+          f.write('Street Address:' + i.address)
+          f.write('City:' + i.city)
+          f.write('State:' + i.state)
+          f.write('Zip Code:' + str(i.zip))
+          for j in i.services:
+            f.write('Date of Service:' + str(j.date))
+            f.write('Provider name:' + j.provider)
+            f.write('Service name:' + j.service)
+
     return True
   def services_provided(self, provider_id):
+    for i in self.provider_directory:
+      if(i.id == id):
+        filename = i.name + '.txt'
+        with open(filename, 'a') as f:
+          for j in i.services:
+            f.write('Current date and time:' + str(datetime.now))
+            f.write('Date service was provided' + str(j.service_date))
+            f.write('Member name:' + j.member_name)
+            f.write('Member number:' + j.member_id)
+            f.write('Service code:' + j.service_code)
+            f.write('Comments:' + j.comments)
+
     return True
   def service_fees(self):
+    
     return True
   def member_check(self, member_id):
     #if member is in the list
