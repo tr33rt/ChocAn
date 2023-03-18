@@ -78,13 +78,34 @@ class data_manager:
             f.write('Current date and time:' + str(datetime.now))
             f.write('Date service was provided' + str(j.service_date))
             f.write('Member name:' + j.member_name)
-            f.write('Member number:' + j.member_id)
-            f.write('Service code:' + j.service_code)
+            f.write('Member number:' + str(j.member_id))
+            f.write('Service code:' + str(j.service_code))
             f.write('Comments:' + j.comments)
 
     return True
   def service_fees(self):
-    
+    for i in self.provider_directory:
+      if(i.id == id):
+        filename = i.name + '-fees.txt'
+        with open(filename, 'a') as f:
+          f.write('Name:')
+          f.write('Number:')
+          f.write('Address:')
+          f.write('City:')
+          f.write('State:')
+          f.write('Zip Code:')
+          for j in i.services:
+            f.write('Current date and time:' + str(datetime.now))
+            f.write('Date service was provided' + str(j.service_date))
+            f.write('Member name:' + j.member_name)
+            f.write('Member number:' + j.member_id)
+            f.write('Service code:' + str(j.service_code))
+            f.write('Fee to be paid:' + str(j.fee))
+            total_consultations += 1
+            total_fees += j.fee
+          f.write('Total number of consultations:' + str(total_consultations))
+          f.write('Total fee:' + str(total_fees))
+
     return True
   def member_check(self, member_id):
     #if member is in the list

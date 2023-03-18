@@ -245,7 +245,8 @@ class controller:
         member_id = int(input("Input Member ID: "))
         self.data_manager.services_received(member_id)
       case "3":
-        self.data_manager.service_fees()
+        provider_id = int(input("Input Provider ID: "))
+        self.data_manager.service_fees(provider_id)
       case "X":
         return
     self.reports_submenu()
