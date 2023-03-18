@@ -10,6 +10,7 @@
 
 import datamanagerhold
 import class_objects
+import time
 from class_objects import *
 from datetime import datetime
 from random import randint
@@ -351,7 +352,7 @@ class controller:
       return True
   def member_billing(self):
     member_id = int(input("Input member ID or slide member card: "))
-    if(datamanagerhold.data_manager().member_check(member_id) == False):
+    if(self.data_manager.member_check(member_id) == False):
       print("Invalid member number")
       print("[1] Retry with new member ID")
       print("[2] Return to main menu")
@@ -367,25 +368,25 @@ class controller:
       Service_ID = int(input("Service ID: "))
       Provider_ID = int(input("Provider ID: "))
       #search service directory
-      holdlist = [class_objects.service for class_objects.service in self.data_manager.service_directory if service.code == Service_ID]
-      if(holdlist == None):
-        print("Incorrect Service ID, restarting form.")
-        self.member_verification()
-      if(holdlist):
-        print(holdlist[0].code + ": " + holdlist[0].desc)
-      holdval = input("Is this the service you provided today? \n [1] Yes \n [2] No \n")
+      for i in class_objects.provider_directory.list:
+        if(int(i.code) == Service_ID):
+          fee = i.fee
+          code = i.code
+          print(str(i.code) + ": " + i.desc)
+          holdval = input("Is this the service you provided today? \n [1] Yes \n [2] No \n")
       match holdval:
         case "1":
-          comments = ("Comments: ")
+          comments = input("Comments: ")
           #Update once comments are added
-          
-          holdthis = [member for member in self.data_manager.member_directory if member.id == member_id]
-          if (holdthis):
-            member_name = holdthis[0].name
-            fee = holdlist[0].fee
-            timehold = datetime.now
-            self.data_manager.provider_directory[len(self.data_manager.provider_directory)].addservice(provider_service(DOS, timehold.datetime(),  member_name, member_id, holdlist[0].code, fee, commments))
-            print("The fee for this visit is: " + fee)
+          for i in self.data_manager.member_directory:
+            if(int(i.id) == member_id):
+              member_name = i.name
+              timehold = time.time()
+          for i in self.data_manager.provider_directory:
+            if(int(i.id) == Provider_ID):
+              i.add_service(provider_service(DOS, datetime.fromtimestamp(timehold), member_name, member_id, code, fee, comments))
+              
+              print("The fee for this visit is: " + str(fee))
             return True
           else:
             print("There are no members under that ID, resetting form")
